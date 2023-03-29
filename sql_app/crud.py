@@ -24,8 +24,8 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
-def create_book(db: Session, book: schemas.BookCreate):
-    db_book = models.Book(title=book.title, author=book.author)
+def create_book(db: Session, book: schemas.BookBase):
+    db_book = models.Book(title=book.title, author_id=book.author_id, genre_id=book.genre_id)
     db.add(db_book)
     db.commit()
     db.refresh(db_book)

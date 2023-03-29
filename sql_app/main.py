@@ -43,9 +43,7 @@ def read_user_by_id(user_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/books/", response_model=schemas.Book, tags=["Book"])
-def create_book(
-        book: schemas.BookCreate, db: Session = Depends(get_db)
-):
+def create_book(book: schemas.BookBase, db: Session = Depends(get_db), ):
     return crud.create_book(db=db, book=book)
 
 
