@@ -3,3 +3,5 @@ venv
 include
 Lib
 sql_app/__pycache__
+Scripts
+pyvenv.cfg
