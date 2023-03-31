@@ -2,3 +2,4 @@ sqlalchemy==2.0.7
 psycopg2==2.9.5
 fastapi==0.95.0
 uvicorn==0.21.1
+python-dotenv==1.0.0

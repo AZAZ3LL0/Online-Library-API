@@ -30,7 +30,6 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    books: list[Book] = []
 
     class Config:
         orm_mode = True
@@ -60,6 +59,22 @@ class AuthorCreate(AuthorBase):
 
 
 class Author(AuthorBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class User_BookBase(BaseModel):
+    user_id: int
+    book_id: int
+
+
+class User_BookCreate(User_BookBase):
+    pass
+
+
+class User_Book(User_BookBase):
     id: int
 
     class Config:

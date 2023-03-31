@@ -1,7 +1,7 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 
-from sql_app.database import Base
+from sql_app.database.database import Base
 
 
 class User(Base):
@@ -13,6 +13,8 @@ class User(Base):
     hashed_password = Column(String, index=True)
     is_active = Column(Boolean, default=True)
 
+    user_book = relationship("User_Book", back_populates="users")
+
 
 class Book(Base):
     __tablename__ = "books"
@@ -23,8 +25,9 @@ class Book(Base):
     genre_id = Column(Integer, ForeignKey("genre.id"))
     author_id = Column(Integer, ForeignKey("author.id"))
 
-    author = relationship("Author", back_populates="books")
     genre = relationship("Genre", back_populates="books")
+    author = relationship("Author", back_populates="books")
+    user_book = relationship("User_Book", back_populates="books")
 
 
 class Genre(Base):
@@ -34,6 +37,17 @@ class Genre(Base):
     title = Column(String, index=True)
 
     books = relationship("Book", back_populates="genre")
+
+
+class User_Book(Base):
+    __tablename__ = "user_book"
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(Integer, ForeignKey("users.id"))
+    book_id = Column(Integer, ForeignKey("books.id"))
+
+    users = relationship("User", back_populates="user_book")
+    books = relationship("Book", back_populates="user_book")
 
 
 class Author(Base):
