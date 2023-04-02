@@ -5,3 +5,7 @@ Lib
 sql_app/__pycache__
 Scripts
 pyvenv.cfg
+sql_app/database/__pycache__
+sql_app/models/__pycache__
+sql_app/schemas/__pycache__
+sql_app/utils/__pycache__
